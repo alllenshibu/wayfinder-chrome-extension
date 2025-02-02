@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "wayfinder-chrome-extension",
+  "version": "1.0",
+  "description": "WayFinder Chrome Extension",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  }
+}
