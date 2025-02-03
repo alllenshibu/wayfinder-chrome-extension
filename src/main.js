@@ -1,42 +1,15 @@
 import './style.css';
+import './modules/actions.js'
+import {markPage} from "./modules/DOMManipulations.js";
 
-import axios from 'axios';
 
-console.log('Hello, world!');
+document.getElementById("mark-webpage-button").addEventListener("click", async () => {
+    let queryOptions = {active: true, lastFocusedWindow: true};
+    let [tab] = await chrome.tabs.query(queryOptions);
 
-const instructionInput = document.getElementById("instruction-section--instruction-input");
-
-const imageContainer = document.getElementById("image-container");
-
-const handleInstructionsSubmit = () => {
-    const instruction = instructionInput.value;
-    alert(`instruction: ${instruction}`);
-
-    chrome.tabs.captureVisibleTab({format: 'png'}, async function (dataUrl) {
-        if (chrome.runtime.lastError) {
-            console.error("Error capturing tab: " + chrome.runtime.lastError.message);
-            return;
-        }
-
-        // Display the captured image by setting the src of an <img> tag
-        const img = document.createElement('img');
-        img.src = dataUrl;
-
-        // Clear any previous images and append the new one
-        imageContainer.innerHTML = '';  // Clear the previous image
-        imageContainer.appendChild(img);  // Add the new image
-
-        const {data, status} = await axios.post('http://localhost:3000/instruction-to-steps', {
-            instruction
-        });
-
-        if(status !== 200) {
-            alert("Error fetching steps");
-            return;
-        }
-
-        alert(`steps: ${data.steps}`);
+    chrome.tabs.sendMessage(tab.id, {
+        command: "MARK_PAGE"
+    }, function (msg) {
+        console.log("result message:", msg);
     });
-};
-
-document.getElementById("instruction-section--instruction-button").addEventListener("click", handleInstructionsSubmit);
+})

@@ -8,7 +8,19 @@
   },
   "permissions": [
     "tabs",
-    "activeTab"
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';"
