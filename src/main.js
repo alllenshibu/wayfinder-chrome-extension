@@ -13,3 +13,8 @@ document.getElementById("mark-webpage-button").addEventListener("click", async (
         console.log("result message:", msg);
     });
 })
+
+document.getElementById("click-element-button").addEventListener("click", async () => {
+    const targetElementNumber = document.getElementById("target-element-number-input").value;
+
+})

@@ -1,4 +1,3 @@
-
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (msg.command && (msg.command == "MARK_PAGE")) {
         var src = document.getElementsByTagName("title")[0].innerHTML;
@@ -114,7 +113,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
                 });
             })
 
-            return [labels, items];
+            return {labels, items};
         }
 
         const clearMarkings = () => {
@@ -126,6 +125,10 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
         console.log("content script loaded");
 
-        markPage()
+        window.scrollBy({
+            top: window.innerHeight,
+            left: 0,
+            behavior: 'instant'
+        })
     }
 });

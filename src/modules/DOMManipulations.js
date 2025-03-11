@@ -118,4 +118,56 @@ export const clearMarkings = () => {
     labels = [];
 }
 
+//
+// Executing Actions
+//
+export const clickElement = (elementMarkingNumber) => {
+    try {
+        const wayFinderItems = JSON.parse(sessionStorage.getItem("wayfinder_items"))
 
+        const item = wayFinderItems[elementMarkingNumber]
+        item.element.click();
+    } catch (err) {
+        console.log("Error click on element:", err)
+    }
+}
+
+export const typeIntoElement = (elementMarkingNumber, text) => {
+    try {
+        const wayFinderItems = JSON.parse(sessionStorage.getItem("wayfinder_items"))
+
+        const item = wayFinderItems[elementMarkingNumber]
+        item.element.value = text;
+    } catch (err) {
+        console.log("Error typing into element:", err)
+    }
+}
+
+export const clickEnterKeyOnElement = (elementMarkingNumber) => {
+    try {
+        const wayFinderItems = JSON.parse(sessionStorage.getItem("wayfinder_items"))
+
+        const item = wayFinderItems[elementMarkingNumber]
+        item.element.dispatchEvent(new KeyboardEvent('keydown', {
+            key: 'Enter',
+            code: "Enter",
+            keyCode: 13,
+            which: 13,
+            bubbles: true
+        }));
+    } catch (err) {
+        console.log("Error clicking enter key on element:", err)
+    }
+}
+
+export const scrollWindow = (direction) => {
+    try {
+        window.scrollBy({
+            top: window.innerHeight,
+            left: 0,
+            behavior: 'instant'
+        })
+    } catch (err) {
+        console.log("Error scrolling window:", err)
+    }
+}

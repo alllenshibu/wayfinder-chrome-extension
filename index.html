@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Vite App</title>
 </head>
-<body class="container mx-auto p-4 w-80 min-h-80">
+<body class="container mx-auto p-4 w-80 min-h-80 bg-gradient-to-b from-[#7138d8] to-[#1296fa]">
 <header>
-    <h1 class="text-2xl font-bold tracking-wider">WayFinder</h1>
+    <h1 class="text-2xl font-bold tracking-wider text-white">WayFinder</h1>
 </header>
 <div id="instruction-section" class="w-5xl h-5xl flex flex-col gap-4">
-    <h2 class="text-xl font-bold">Instructions</h2>
+    <h2 class="text-xl font-bold text-white">Instructions</h2>
     <textarea
             id="instruction-section--instruction-input"
             class="w-full h-full min-h-48 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 resize-none">
@@ -22,10 +22,28 @@
         Do It
     </button>
 </div>
-<button id="mark-webpage-button"
-        class="px-4 py-2 bg-blue-600 text-white rounded shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-300">
-    Mark Webpage
-</button>
+<div id="steps-section" class="w-5xl h-5xl flex flex-col gap-4">
+    <h2 class="text-xl font-bold text-white">Steps</h2>
+    <input
+            id="steps-section--step-input"
+            class="w-full min-h-20 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 resize-none"
+    />
+    <button
+            id="steps-section--step-button"
+            class="px-4 py-2 bg-blue-600 text-white rounded shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-300">
+        Do It
+    </button>
+</div>
+<div class="flex flex-row gap-4">
+    <button id="mark-webpage-button"
+            class="px-4 py-2 bg-blue-600 text-white rounded shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-300">
+        Mark Webpage
+    </button>
+    <input id="target-element-number-input" type="number" />
+    <button id="click-element-button">
+            Click
+    </button>
+</div>
 <div id="image-container"></div>
 <script src="./src/main.js" type="module"></script>
 
