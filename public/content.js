@@ -125,10 +125,44 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
         console.log("content script loaded");
 
-        window.scrollBy({
-            top: window.innerHeight,
-            left: 0,
-            behavior: 'instant'
-        })
+        const {items} = markPage();
+
+
+        // Search for me on google
+        const dummySteps = [
+            {
+                type: 'CLICK',
+                elementNumber: 7
+            },
+            {
+                type: 'TYPE_TEXT',
+                elementNumber: 7,
+                text: 'Allen Shibu'
+            },
+            {
+                type: 'PRESS_ENTER',
+                elementNumber: 7
+            }
+        ];
+
+        for (let step of dummySteps) {
+            console.log('Executing Step:', step);
+
+            if (step.type === 'CLICK') {
+                items[step.elementNumber].element.click();
+            } else if (step.type === 'TYPE_TEXT') {
+                items[step.elementNumber].element.value = step.text;
+            } else if (step.type === 'PRESS_ENTER') {
+                items[step.elementNumber].element.focus();
+                items[step.elementNumber].element.dispatchEvent(new KeyboardEvent('keydown', {
+                    key: 'Enter',
+                    code: "Enter",
+                    keyCode: 13,
+                    which: 13,
+                    bubbles: true
+                }));
+            }
+        }
     }
 });
+
